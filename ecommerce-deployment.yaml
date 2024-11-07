@@ -20,19 +20,27 @@ spec:
             memory: "128Mi"
             cpu: "500m"
         ports:
-        - containerPort: 5000
-
+          - containerPort: 5000
+        env:
+          - name: DB_HOST
+            value: ecommerce
+          - name: DB_USER
+            value: ecommerce
+          - name: DB_PASSWORD
+            value: ecomm1234
+          - name: DB_NAME
+            value: ecommerce
+          - name: FLASK_APP
+            value: index.py
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
   name: ecommerce
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: ecommerce
   ports:
   - port: 80
     targetPort: 5000
-    nodePort: 30000
