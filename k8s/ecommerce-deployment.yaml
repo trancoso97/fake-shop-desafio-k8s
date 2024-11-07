@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: ecommerce
-        image: rdtrancoso/ecommerce-desafio-k8s:1.0.0
+        image: rdtrancoso/ecommerce-desafio-k8s
         resources:
           limits:
             memory: "128Mi"
@@ -23,7 +23,7 @@ spec:
           - containerPort: 5000
         env:
           - name: DB_HOST
-            value: ecommerce
+            value: postgres
           - name: DB_USER
             value: ecommerce
           - name: DB_PASSWORD
