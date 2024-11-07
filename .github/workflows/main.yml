@@ -3,6 +3,10 @@ name: CI-CD
 on:
   push:
     branches: ["main"]
+    paths-ignore: 
+      - './k8s/**'
+      - './github/**'
+      - 'README.md'
   workflow_dispatch:
     
 jobs:
@@ -47,6 +51,6 @@ jobs:
         uses: Azure/k8s-deploy@v5
         with:
           manifests: |
-            /k8s/ecommerce-deployment.yaml
+            ./k8s/ecommerce-deployment.yaml
           images: |
             ${{ vars.DOCKERHUB_USERNAME }}/ecommerce-desafio-k8s:v${{ github.run_number }}
